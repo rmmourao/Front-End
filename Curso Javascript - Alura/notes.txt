@@ -1,0 +1,62 @@
+Anotações
+
+!!... !! - Dicas de boas práticas.
+
+JavaScipt é uma linguagem que além de ser padrão nos 
+navegadores atuais, vem expandindo para outras áreas
+como servidores, banco de dados e até plataformas de 
+IOT.
+    !!O ideal ao programar uma página web, é manter os
+    códigos de HTML, CSS e JavaScipt em arquivos separados!!
+    
+    !!Como o navegador entende somente HTML, é preciso incluir
+    no arquivo HTML as tags <script>... </script> para
+    incluir um script de JavaScipt no código HTML. O atributo
+    src pode ser usado para informar o endereço de um script
+    JavaScipt em outro documento!!
+    
+    !!É sempre bom manter o console da página aberto para 
+    monitorar erros, efetuar mudanças e testes na página!!
+
+Funçoes
+    var <nomeVariavel> = <valor>;
+        Define uma variável, variáveis em JavaScipt não são 
+        tipadas, exemplo, para informar uma string basta 
+        colocar o valor entre aspas ('simples' ou "duplas").
+
+    alert(<mensagemOuValor>);
+        Imprime em um pop-up a mensagem informada ou valor 
+        informado.
+
+    console.log(<mensagemOuValor>);
+        Imprime no console da página no navegador a 
+        mensagem ou valor informado.
+
+    document;
+        Imprime no console da página o DOM () da página.
+
+    querySelector(<valorOuTagOuClasse>);
+        Busca o valor informado dentro da página.
+        
+        !!O ideal ao usar o querySelector, é efetuar a 
+        busca pela classe, id ou seletor CSS, não por tags, 
+        pois pode gerar confusão!!
+
+        !!Para buscar uma classe no querySelector, informamos
+        o nome da classe precedido de um ponto (.)!!
+
+        !!Para buscar um id no querySelector, informamos
+        o nome do id precedido de hashtag (#)!!
+
+    textContent
+        É uma função usada para manipular textos.
+    
+    Exemplo
+        var texto = document.querySelector("h1");
+        //Atribui à variável texto o valor encontrado
+        //no elemento h1.
+        console.log(texo.textContent="Título Modificado")
+        //Imprimi no console o valor alterado da variável
+        //texto.
+
+
