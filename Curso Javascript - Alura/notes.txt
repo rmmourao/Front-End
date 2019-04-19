@@ -18,11 +18,19 @@ IOT.
     !!É sempre bom manter o console da página aberto para 
     monitorar erros, efetuar mudanças e testes na página!!
 
-Funções
+Comandos
     var <nomeVariavel> = <valor>;
         Define uma variável, variáveis em JavaScipt não são 
         tipadas, exemplo, para informar uma string basta 
         colocar o valor entre aspas ('simples' ou "duplas").
+
+    function <nomeFuncao>(<parametros>){
+        <codigoFuncao>;
+    }
+        Define uma função nomeada que pode ser chamade dentro do 
+        código inumeras vezes.
+
+        !!Esse mesmo código pode ser usado para definir uma função anônima, basta retirar o <nomeFuncao> do código, porém uma função anônima só será chamada na sua definição!! 
 
     alert(<mensagemOuValor>);
         Imprime em um pop-up a mensagem informada ou valor 
@@ -53,6 +61,17 @@ Funções
 
     .textContent
         É uma função usada para manipular textos.
+
+    .createElement("<elemento>");
+        É uma função usada para criar um novo elemento na página.
+
+    .addEventListener(<evento>, <ação>);
+        É usado para adicionar um ouvinte na página.
+
+        ##Um ouvinte é como um vigia, ele aguarda que o evento infomado aconteça para executar algo##
+
+    .appendChild(<elemento>);
+        É usado para incluir como filho um elemento passado como parâmetro ao elemento associado.
     
     .style
         Permite acessar e alterar a propriedade style de 
@@ -61,6 +80,9 @@ Funções
         !!Não é recomendado o uso excessivo da função 
         .style, o ideal é que qulquer mudança na parte 
         estética da página seja feito no arquivo de CSS!!
+
+    .value
+        Permite acessar o valor do elemento associado.
     
     .classList
         Acessa e lista as classes de um elemento.
@@ -74,6 +96,11 @@ Funções
     .toFixed();
         Delimita o número de casas decimais de um número
         quebrado.
+
+    .preventDefault();
+        Previne que o elemento associado execute seu comportamento padrão.
+
+        !!Sempre que for necessário acessar um evento de algum elemento do HTML, devemos informar que vamos acessalos através do parâmetro event, há formas de acessarmos tais eventos sem esse parâmetro, mas é boa prática utiliza-lo!!
     
 
 
