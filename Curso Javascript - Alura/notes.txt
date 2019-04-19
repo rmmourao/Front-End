@@ -2,6 +2,8 @@ Anotações
 
 !!... !! - Dicas de boas práticas.
 
+##... ## - Conceitos.
+
 JavaScipt é uma linguagem que além de ser padrão nos 
 navegadores atuais, vem expandindo para outras áreas
 como servidores, banco de dados e até plataformas de 
@@ -86,8 +88,17 @@ Comandos
 
         ##Um ouvinte é como um vigia, ele aguarda que o evento infomado aconteça para executar algo##
 
+        click
+            É um evento, acontece quando clicamos em algum elemento da página.
+
+        dblclick
+            É um evento, acontece quando um elemento da página recebe um clique duplo.
+
     .appendChild(<elemento>);
         É usado para incluir como filho um elemento passado como parâmetro ao elemento associado.
+
+    setTimeout(<função>, <tempoEmMs>);
+        Atrasa a função informada no tempo especificado (o tempo deve ser informado em milisegundos).
     
     .style
         Permite acessar e alterar a propriedade style de 
@@ -105,6 +116,9 @@ Comandos
 
     .push
         Inclui itens em um array.
+
+    .target
+        Define um alvo para a função.
     
     .classList
         Acessa e lista as classes de um elemento.
