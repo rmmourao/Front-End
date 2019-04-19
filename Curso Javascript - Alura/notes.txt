@@ -8,6 +8,8 @@ como servidores, banco de dados e até plataformas de
 IOT.
     !!O ideal ao programar uma página web, é manter os
     códigos de HTML, CSS e JavaScipt em arquivos separados!!
+
+    !!No tópico de separação em arquivos diferentes, é interessante separar códigos com funções distintas em arquivos.js separados, isso facilita a manutanibilidade do código!!
     
     !!Como o navegador entende somente HTML, é preciso incluir
     no arquivo HTML as tags <script>... </script> para
@@ -24,13 +26,24 @@ Comandos
         tipadas, exemplo, para informar uma string basta 
         colocar o valor entre aspas ('simples' ou "duplas").
 
+    var <nomeObjeto> = {
+        <campo1>: <valor1>,
+        <campo2>: <valor2>,
+        <campo3>: <valor3>,
+        ...
+        <campoN>: <valorN>
+    }
+        Cria um objeto e define suas propriedades.
+
     function <nomeFuncao>(<parametros>){
         <codigoFuncao>;
     }
         Define uma função nomeada que pode ser chamade dentro do 
         código inumeras vezes.
 
-        !!Esse mesmo código pode ser usado para definir uma função anônima, basta retirar o <nomeFuncao> do código, porém uma função anônima só será chamada na sua definição!! 
+        !!Esse mesmo código pode ser usado para definir uma função anônima, basta retirar o <nomeFuncao> do código, porém uma função anônima só será chamada na sua definição!!
+
+        !!Sempre que um trecho de código será usado várias vezes, é aconselhavel transforma-lo em uma função, dessa forma evitamos repetir várias vezes o mesmo trecho de código!!
 
     alert(<mensagemOuValor>);
         Imprime em um pop-up a mensagem informada ou valor 
@@ -42,6 +55,9 @@ Comandos
 
     document;
         Imprime no console da página o DOM () da página.
+
+    .forEach(<comando>);
+        Método que percorre todos os elementos de uma string executando o comando informado.
 
     .querySelector(<valorOuTagOuClasse>);
         Busca o valor informado dentro da página.
@@ -83,6 +99,12 @@ Comandos
 
     .value
         Permite acessar o valor do elemento associado.
+
+    .innerHTML
+        Permite acessar o conteúdo de um elemento HTML.
+
+    .push
+        Inclui itens em um array.
     
     .classList
         Acessa e lista as classes de um elemento.
