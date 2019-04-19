@@ -18,7 +18,7 @@ IOT.
     !!É sempre bom manter o console da página aberto para 
     monitorar erros, efetuar mudanças e testes na página!!
 
-Funçoes
+Funções
     var <nomeVariavel> = <valor>;
         Define uma variável, variáveis em JavaScipt não são 
         tipadas, exemplo, para informar uma string basta 
@@ -35,8 +35,11 @@ Funçoes
     document;
         Imprime no console da página o DOM () da página.
 
-    querySelector(<valorOuTagOuClasse>);
+    .querySelector(<valorOuTagOuClasse>);
         Busca o valor informado dentro da página.
+    .querySelectorAll(<valorOuTagOuClasse>);
+        Busca um grupo de valores na página, retorna um
+        array.
         
         !!O ideal ao usar o querySelector, é efetuar a 
         busca pela classe, id ou seletor CSS, não por tags, 
@@ -48,15 +51,30 @@ Funçoes
         !!Para buscar um id no querySelector, informamos
         o nome do id precedido de hashtag (#)!!
 
-    textContent
+    .textContent
         É uma função usada para manipular textos.
     
-    Exemplo
-        var texto = document.querySelector("h1");
-        //Atribui à variável texto o valor encontrado
-        //no elemento h1.
-        console.log(texo.textContent="Título Modificado")
-        //Imprimi no console o valor alterado da variável
-        //texto.
+    .style
+        Permite acessar e alterar a propriedade style de 
+        um elemento.
+
+        !!Não é recomendado o uso excessivo da função 
+        .style, o ideal é que qulquer mudança na parte 
+        estética da página seja feito no arquivo de CSS!!
+    
+    .classList
+        Acessa e lista as classes de um elemento.
+    .classList.add
+        Adiciona uma classe à um elemento.
+
+        !!A função .classList.add pode ser usada para 
+        incluir uma classe de CSS que irá alterar a 
+        parte estética do elemento.
+    
+    .toFixed();
+        Delimita o número de casas decimais de um número
+        quebrado.
+    
+
 
 
