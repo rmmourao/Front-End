@@ -47,6 +47,21 @@ Comandos
 
         !!Sempre que um trecho de código será usado várias vezes, é aconselhavel transforma-lo em uma função, dessa forma evitamos repetir várias vezes o mesmo trecho de código!!
 
+    new RegExp(<valorBuscado>, "<flag>");
+        Adiciona uma Regular Expression, nesse caso para efetuar uma busca, o primeiro valor passado é o valor pesquisado, o segundo valor são flags que definem como a busca deve ser feita.
+
+    new XMLHttpRequest();
+        Cria um pedido XML, que pode ser enviado para uma API.
+
+            .open("<método>", "<url>");
+                Abre o canal da comunicação e define o método para o XMLHttpRequest.
+
+            .send();
+                Envia o XMLHttpRequest.
+
+    JSON.parse(<arquivoJSON>);
+        Converte um arquivo JSON para um objeto JavaScript.
+
     alert(<mensagemOuValor>);
         Imprime em um pop-up a mensagem informada ou valor 
         informado.
@@ -94,6 +109,9 @@ Comandos
         dblclick
             É um evento, acontece quando um elemento da página recebe um clique duplo.
 
+        input
+            É o evento que acontece quando uma entrada é feita ao digitar no teclado.
+
     .appendChild(<elemento>);
         É usado para incluir como filho um elemento passado como parâmetro ao elemento associado.
 
@@ -110,6 +128,9 @@ Comandos
 
     .value
         Permite acessar o valor do elemento associado.
+
+    .status
+        Permite acessar o status do elemento associado.
 
     .innerHTML
         Permite acessar o conteúdo de um elemento HTML.
