@@ -2,7 +2,7 @@ Anotações
 
 !!... !! - Dicas de boas práticas.
 
-##... ## - Conceitos.
+##... ## - Regras e conceitos.
 
 Vue.js é um framework de JavaScript
     Core minimalista de 17 kb;
@@ -34,12 +34,399 @@ Vue.js é um framework de JavaScript
                 - webpack - empacota e organiza os arquivos da pasta src;
             - App.vue - é um módulo (um arquivo onde são declarados os artefatos que podem ser usados por outros módulos), e também uma "Single File Template", neste caso o componente app, é caracterizado por 3 tags:
                 - template - a apresentação do componente;
+                    ##Por padrão a tag template só aceita 1 único item (título, imagem, etc...) dentro, para usarmos mais de um item dentro do template, é preciso coloca-los dentro de um elemento raiz (root, <div>... </div>, <span>... </span>, etc...)##
+                    ##Para definirmos um elemento pelo próprio componente usamos a função data na tag script, segue exemplo abaixo:
+                        
+                        data() {
+
+                            return{
+                                titulo: 'Alurapic'
+                            }
+
+                        }
+
+                    E a propriedade {{ titulo }} na tag template, 
+                    ##Para declararmos um atributo usamos o código abaixo:
+
+                        data() {
+
+                            return{
+                                foto: {
+                                    url: '<urlFoto>',           (Nesse exemplo o elemento é um objeto, por isso a sintaxe diferente)
+                                    titulo: '<tituloFoto>'
+                                }
+                            }
+
+                        }
+
+                    E nas propriedades informamos usando a diretiva v-bind <img v-bind:src="foto.url" v-bind:alt="foto.titulo">, que pode ser expressa usando o atalho <img :src="foto.url" :alt="foto.titulo">##
+
                 - script - o comportamento do componente;
                 - style - o estilo do componente;
             Global View Object - é o core, o objeto principal do Vue.js, é responsável por criar a View instance;
                 - View instance - é responsável por criar uma ponte entre o componente (App.vue) e a view (index.html), a configuração da View instance é feita no arquivo main.js;
                     - main.js - é nesse arquivo é que o componente App (App.vue) é importado e onde a View instance é configurada, nesse projeto, através da função Vue:
+                        
                         new Vue({
                             el: '#app',
                             render: h => h(App)
                         })
+    
+    App.vue - Criando uma página
+        Dentro da tag
+
+=== 01 - Introdução
+
+Bem-vindo, meu nome é Flávio Almeida (twitter @flaviohalmeida) e muito provavelmente já nos encontramos em outros treinamentos aqui do Alura.
+
+Conhecendo um pouco da nossa aplicação
+Tenho aqui o projeto deste curso completo. Este projeto se chama Alurapic, um sistema de gerenciamento de imagens, permitindo que o usuário cadastre fotos e busque por aquelas que seguem determinado critério.
+
+Preview da aplicação 1
+
+Tenho certeza que se eu lhe mostrasse esta aplicação fora do contexto desse treinamento, você ficaria pensando qual tecnologia foi utilizada na sua construção, mas como estamos em um treinamento de Vue.js, você já sabe a resposta.
+
+Apresentando o Vue.js
+Vue.js é um framework para criação de componentes reutilizáveis, inclusive para criação de Single Page Applications, aquele tipo de aplicação que nunca recarrega durante seu uso. Um dos pontos de destaque desse framework é seu core minimalista de aproximadamente 17kb e a utilização de DOM virtual para realizar transformações no DOM, sem falar que o desenvolvedor não precisa se preocupar em aplicar técnicas para otimizar sua aplicação e, quando houver necessidade, ela será mínima.
+
+Digamos que o Vue.js incorpora muitos dos conceitos do Angular 1.X da Google ao mesmo tempo que adota a estratégia de virtual DOM do React do Facebook tentando acompanhar a facilidade de uso do primeiro e a performance do segundo.
+
+Exercício obrigatório
+Agora que você já tem uma visão geral do nosso projeto, faça o primeiro exercício obrigatório deste capítulo. Lá você terá instruções de como configurar a infraestrutura mínima em seu computador pessoal para poder realizar este curso, inclusive orientações de qual editor utilizar.
+
+Espero que sua experiência seja tão excepcional quanto a minha durante o tempo de elaboração deste treinamento. Um abraço do Flávio Almeida e bom estudo.
+
+=== 02 - (Obrigatório) Infraestrutura do treinamento
+
+Olá! Este curso esta dividido em dois módulos para melhorar sua experiência. O primeiro é este que você esta assistindo. Quando terminar todo o curso, você poderá cursar o segundo módulo com assuntos que não foram abordados aqui, completando assim sua jornada em Vue.js. Um abraço do Flávio Almeida! (twitter @flaviohalmeida).
+
+Para poder desenvolver de maneira profissional utilizando Vue, você precisa da plataforma Node.js instalada. O Node.js é um ambiente JavaScript multiplataforma disponível para Linux, Mac e Windows. Para instalá-lo, siga as instruções abaixo referentes a sua plataforma:
+
+Versão do Node.js
+É necessário no mínimo o Node.js em sua versão 6.X. Se você não é um desenvolvedor experiente com solução de problemas, evite instalar versões ímpares do Node.js, pois não são LTS (long term support)!
+
+Caso você já tenha o Node instalado
+Se você já tem o Node instalado em sua máquina, verifique se ele está pelo menos na versão 6.X através do comando node -v no seu terminal, pois precisamos de uma versão atualizada do mesmo para que não ocorra erros na sua máquina durante o projeto.
+
+Instalação Node.js no Linux (Ubuntu)
+No Ubuntu, através do terminal (permissão de administrador necessária) execute o comando abaixo:
+
+sudo apt-get install -y nodejs
+ATENÇÃO: em algumas distribuições Linux, pode haver um conflito de nomes quando o Node é instalado pelo apt-get. Neste caso específico, no lugar do binário ser node, ele passa a se chamar nodejs. Isso gera problemas, pois a instrução npm start não funcionará, pois ela procura o binário node e não nodejs. Para resolver no Ubuntu
+
+sudo ln -s /usr/bin/nodejs /usr/bin/node depois o comando npm start funcionará conforme esperado.
+
+É uma pena haver essa discrepância, mas fica aqui essa dica!
+
+Instalação Node.js no Windows
+Baixe o instalador clicando no grande botão install, diretamente da página do Node.js. Durante a instalação, você apenas clicará nos botões para continuar o assistente. Não troque a pasta padrão do Node.js durante a instalação, a não ser que você saiba exatamente o que está fazendo.
+
+Instalação Node.js no MAC
+O homebrew é a maneira mais recomendada para instalar o Node.js em sua máquina, através do comando:
+
+brew update
+brew install node
+Não usa homebrew? Sem problema, baixe o instalador clicando no grande botão install, diretamente da página do Node.js.
+
+Editor recomendado: Visual Studio Code (Gratuito)
+Recomendo extremamente o uso do Visual Studio Code (VSCode) um editor gratuito criado pela Microsoft disponível claro, para Windows, Linux e MAC. É esse que utilizarei ao longo do treinamento.
+
+Você pode baixá-lo no endereço https://code.visualstudio.com/download.
+
+Se você utiliza IDE's como Eclipse ou NetBeans, sugiro abandonar essas IDE's pois você encontrará problemas desde acentuação até mensagens de erros falso positivo. Caso você insista no uso delas, faça primeiro o curso usando o editor indicado e depois utilize sua IDE. Isso evitará que você poste no fórum dúvidas a respeito desses editores que não aconselho utilizar na parte de front-end.
+
+Caso você não queria usar o Visual Studio, pode utilizar outros editores como Atom ou Sublime3. Contudo, sugiro fortemente o Visual Studio Code para que você tenha uma paridade visual comigo ao longo do curso.
+
+Sintaxe colorida (sintaxe highlight) com Visual Studio Code e Vue
+Caso seu VSCode não esteja com marcação de cores, recomenda-se instalar para melhor visualização de arquivos .vue. Com o VSCODE aberto vá até o menu views -> extension:
+
+
+Isso fará com que o campo de busca de extensões seja exibido. Digite vue e escolha a opção vue do Liujim-jim como demonstrado na imagem abaixo:
+
+
+Depois de instalar, basta reiniciar o VSCODE para que a extensão seja carregada.
+
+=== 03 - Gerando o projeto
+
+Vamos dar início ao nosso projeto. No entanto, "dar início" a um projeto pode ser algo um tanto demorado e complicado. Precisamos baixar os scripts que serão usados, decidir a estrutura de pastas e até configurar um servidor web. Imagine fazer todo esse processo antes de escrevermos sequer uma linha de código da nossa aplicação!
+
+Automatizando a construção do projeto com Vue CLI
+A boa notícia é que o Vue possui um CLI (command line interface) que nada mais é do que uma ferramenta que automatiza a construção da infraestrutura do projeto. Mas de onde baixaremos o CLI do Vue? Acessaremos algum site? Com certeza não, aliás, baixar dependências de sites é uma prática cada vez mais extinta no mundo front-end. Utilizaremos o gerenciador de pacotes do Node.js, o npm, para baixar o Vue CLI, inclusive todas as dependências da aplicação.
+
+Agora você deve estar entendendo o motivo pelo qual o Node.js é pré-requisito obrigatório para desenvolver em Vue, no entanto essa obrigatoriedade existe apenas em ambiente de desenvolvimento. Quando terminamos uma aplicação, o uso do Node.js não é necessário, pois cabe ao desenvolvedor escolher qual servidor utilizar para hospedá-la, seja ele um servidor Php, Java, .Net entre outros. E claro, nada o impede de querer usar o Node.js como servidor da sua aplicação.
+
+Considerações sobre terminal/prompt de comando
+Para utilizarmos o Vue CLI, é necessário um mínimo de traquejo no terminal (Linux/Mac) ou no prompt de comando (Windows) do seu sistema operacional. Não é exclusividade do Vue CLI ser utilizado através do terminal, e um conhecimento básico o ajudará bastante ao longo deste curso e dos demais da Alura que dependem do terminal. Bom, vamos começar os trabalhos.
+
+Instalando o CLI do Vue
+Através do terminal e com o Node.js devidamente instalado, vamos instalar o Vue CLI através de um comando do npm. Mas atenção, é necessário ter privilégio de administrador para que o comando funcione corretamente. Dependendo de como seu sistema operacional esta configurado, talvez não seja necessário. Mas se houver algum problema durante a instalação você já sabe qual a possível causa.
+
+No terminal (ou prompt de comando, Se você usa Windows), vamos executar o seguinte comando:
+
+npm install -g vue-cli@2.7.0
+Estamos instalando Vue CLI globalmente através do parâmetro -g para que possamos acessar o CLI de qualquer pasta através do terminal. Dentro de instantes tudo será baixado. Assim que a instalação terminar, vamos chamar o CLI e solicitar que seja impresso no console sua versão para sabermos se a instalação foi realizada com sucesso:
+
+ vue --version
+Como instalamos a versão 2.7.0, será essa versão impressa no console. Aliás, peço que usem a mesma versão que estou usando neste treinamento. Ela já foi homologada por mim. É comum o aluno querer atualizar para a versão mais nova, um desejo justo. No entanto, novas versões podem causar bugs que podem atrapalhar o processo de aprendizagem do aluno. Sendo assim, depois que concluir o projeto e tudo estiver funcionando, se quiser atualizar para a versão mais nova e um erro acontecer, você saberá que o erro é da versão mais nova (bug, incompatibilidade) e não do seu código.
+
+Excelente, agora que cliente de linha de comando esta instalado, podemos gerar nosso projeto.
+
+Novo projeto a partir de um template
+Através do terminal, vou até a minha área de trabalho (Desktop) para em seguida e gerar o projeto alurapic através do comando:
+
+vue init webpack-simple alurapic
+Algumas perguntas serão feitas (nome do projeto, autor, versão) e podemos teclar ENTER para todas elas tranquilamente para adotarmos valores padrões. O exemplo acima usa como template o webpack-simple. Há outros templates mais simples e mais sofisticados, no entanto, este template é mais do que suficiente para o escopo da nossa aplicação.
+
+O resultado do comando criará a pasta alurapic, no entanto, temos apenas a estrutura do projeto e uma lista de todas as suas dependências. Essas dependências não são baixadas automaticamente na construção do projeto. Precisamos entrar na pasta alurapic ainda no terminal e executarmos o comando:
+
+npm install
+Este comando baixará todas as dependências listadas no arquivo alurapic/package.json. Entenda esse arquivo como um catálogo de todos os recursos que nosso projeto precisa para funcionar. Aliás, como você já deve ter inferido, quem criou esse package.json automaticamente para nós foi o CLI.
+
+Levantando um servidor e acessando a aplicação
+Quando todas as dependências forem baixadas, já podemos subir nossa aplicação através do comando:
+
+ npm run dev
+O comando npm run dev executa um script criado em alurapic/package.json criado pelo próprio CLI. Há muita coisa envolvida nesse comando, mas o mais importante é saber por agora que ele levanta um servidor local servindo nosso projeto e abrirá automaticamente o navegador padrão do seu sistema operacional apontando para o endereço do projeto no servidor. Fantástico, não? Veremos uma página genérica criada pelo template que utilizamos ao criar nosso projeto.
+
+Com o projeto criado, vamos verificar sua estrutura.
+
+=== 04 - Exercício
+
+=== 05 - Exercício
+
+=== 06 - Entendendo a estrutura
+
+Sem precisarmos fazer nada, o comando npm run dev levantou um servidor http totalmente já configurado para que possamos acessar nossa aplicação, e mais, automaticamente abriu o navegador padrão do sistema operacional que carregou o arquivo alurapic/index.html. Mordomia assim só na casa da minha mãe!
+
+Falando em mordomia, veremos que esse servidor voltado para o ambiente de desenvolvimento faz muito mais do que imaginamos, mas primeiro vamos entender a estrutura do projeto que foi criada, começando pelo conteúdo do arquivo alurapic/index.html:
+
+<!-- alurapic/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>alurapic</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="/dist/build.js"></script>
+  </body>
+</html>
+Espere um pouco! Essa página apenas importa um script e possui uma div vazia. Como é possível que ela seja a página que estamos visualizando no navegador? E se eu disser para vocês que o conteúdo exibido no navegador, inclusive todos os arquivos da pasta alurapic/src foram transformados no script /dist/build.js? Quer dizer que nossa página se transformou em um script? Sim!
+
+Babel, Webpack e geração do bundle
+Com a revelação que acabei de declarar, acredito que vocês estejam ansiosos para ver o conteúdo de /dist/build.js, mas sinto informa-los que esse arquivo não existe fisicamente, ainda. O conteúdo da pasta alurapic/src foi transformando em memória no arquivo build.js, por isso o arquivo não existe. Isso se dá assim para acelerar o tempo de desenvolvimento permitindo que o desenvolvedor veja o quanto antes o resultado de suas alterações no projeto. Aprendemos a gerar esse arquivo ainda neste curso, para que possamos distribuir nossa aplicação.
+
+Voltando ao nosso arquivo build.js, eu disse que ele é o resultado da transformação dos arquivos da pasta alurapic/src, mas quem realiza essa transformação? Qual sua finalidade? Primeiramente, ocorrem duas transformações cada uma com ferramentas diferentes.
+
+A primeira transforma através do processo de transcompilação todo o código escrito usando ES2015 para ES5 garantindo maior compatibilidade da nossa aplicação, mais notadamente em browsers desatualizados de smartphones. A segunda se encarrega de gerar um bundle para que seja carregado pelo navegador.
+
+Para realizar as transformações anteriores que acabei de citar, o Vue CLI utiliza respectivamente Babel e WebPack. Por fim, vale ressaltar que Webpack vai mais além do que simplesmente criar um bundle, mas para início de conversa o que sabemos é suficiente para podermos continuar.
+
+Agora que você já entendeu o motivo e como o build.js é gerado, vamos deixá-lo de lado e focar a pasta alurapic/src para entender o papel de cada arquivo que fará parte do bundle. Aliás, qual deles equivale ao conteúdo que é exibido em nosso navegador?
+
+Componentes declarados em Single File Templates
+O arquivo que corresponde à página que estamos vendo no navegador é o alurapic/src/App.vue:
+
+<!-- src/App.vue -->
+
+<template>
+  <div id="app">
+    <img src="./assets/logo.png">
+    <h1>{{ msg }}</h1>
+    <h2>Essential Links</h2>
+    <ul>
+      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
+      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
+      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
+      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
+    </ul>
+    <h2>Ecosystem</h2>
+    <ul>
+      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
+      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
+      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
+      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1, h2 {
+  font-weight: normal;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: #42b983;
+}
+</style>
+No entanto, ele não é uma página, mas um Single file template (template de único arquivo) que equivale a um módulo que declara um componente. Muito coisa para um arquivo só, não? O que precisamos entender aqui é que o arquivo sendo um módulo, se quisermos usar o componente que ele declara precisamos importá-lo em outros módulos da aplicação que queira utilizá-lo.
+
+Pense em um módulo como uma caixa preta que pode ter diversas funcionalidades e só aquelas que forem explicitamente exportadas podem ser utilizadas em outros módulos. Tanto isso é verdade que dentro da tag <script> de App.vue há a instrução export default permitindo que nosso componente seja importado por outros módulos. Aliás, falando em componente, que nada mais são do que um objeto que possui sua apresentação, dado e comportamento. É por isso que nosso componente é definido através de três grandes blocos: template (apresentação), script (comportamento e dados) e style (o estilo da apresentação)
+
+Sabemos que esse arquivo será transformado automaticamente para algo que seja compreendido pelo navegador, mas como é feita a ligação desse componente com index.html, uma vez que o componente é exibido assim que nossa página é carregada. É isso que veremos.
+
+=== 07 - Exercício
+
+=== 08 - Global View Object
+
+Em index.html, quando nossa aplicação é carregada, a tag <div id="app"></div> é substituída pelo componente App que acabamos de escrutinar, mas isso não ocorre por padrão. Alguém precisa explicitar isso na inicialização da nossa aplicação, a tarefa realizada por alurapic/main.js. Vamos verificar esse arquivo.
+
+// alurapic/src/main.js 
+
+import Vue from 'vue'
+import App from './App.vue'
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+O arquivo alurapic/src/main.js, assim como App.vue é um módulo do ES2015:
+
+// alurapic/src/main.js
+
+import Vue from 'vue'
+import App from './App.vue'
+
+// código posterior omitido
+Sendo um módulo do ES2015, para termos acesso a outros artefatos de outros módulos da nossa aplicação, precisamos explicitar qual artefato de qual módulo desejamos importar. Como este é o arquivo responsável em exibir nosso componente App precisamos importá-lo, o que é feito na segunda instrução do arquivo. Como só temos um componente em App.vue e a sintaxe export default foi utilizada, usamos como nome do artefato a ser importado o mesmo nome do arquivo, sem a extensão .vue.
+
+No entanto, antes de importar App, o módulo alurapic/main.js importa Vue (maiúsculo) do módulo vue. O módulo vue esta localizado dentro da pasta alurapic/node_modules e o CLI já tem tudo configurado para que a pasta do módulo seja enxergada pela instrução import. O artefato Vue é o Global View Object, um objeto especial do Vue.js, seu core.
+
+View Instance
+Para que possamos carregar, ou melhor, renderizar nosso componente App em <div id="app"></div> de index.html, precisamos criar uma view instance com auxílio do global view object que importamos:
+
+// alurapic/src/main.js 
+
+// código anterior omitido 
+
+// criando uma view instance
+new Vue({
+ /* código omitido */
+})
+Uma instância de view é uma ponte entre nossos componentes e view. Em nosso caso, nossa view é o index.html. Mas a view instance não fez "curso mãe Diná" para saber qual componente deve carregar e o local onde deve inseri-lo em index.html, sendo necessário passar essa informação para a ela.
+
+Renderizando um template
+Vejamos nossa view instance devidamente configurada:
+
+// alurapic/src/main.js
+// código anterior omitido 
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+A propriedade el recebe como parâmetro o seletor do elemento que será substituído pelo nosso componente, já na função render passamos o componente que desejamos renderizar.
+
+Agora que já entendemos como as coisas se encaixam em nossa aplicação, vamos voltar para nosso componente App para compreender um conceito importante logo neste primeiro capítulo.
+
+=== 09 - Exercício
+
+=== 10 - Interpolação e data binding
+
+Voltando para a declaração do nosso componente App, na parte que declara seu template, ou seja, sua apresentação temos a seguinte tag h1:
+
+<!-- alurapic/src/App.vue -->
+<!-- código anterior omitido -->
+
+<h1>{{ msg }}</h1>
+
+<!-- código posterior omitido -->
+Se fizermos um "de, para" deste trecho do nosso template com o que visualizamos no browser, em seu lugar é exibido o texto "Welcome to Your Vue.js App". Como isso é possível? Para que possamos compreender essa mágica, vou apelar para uma analogia com o trabalho de um advogado.
+
+Um advogado quando cria um memorando ou coisa parecida ele não faz do zero, ele usa um template do documento que deseja redigir personalizando apenas algumas lacunas desse documento. Não é à toa que o nome da nossa tag se chama template. Nela, lacunas são expressas através de {{ }} e a informação entre as chaves duplas é a informação que o template necessita para ficar completo. No caso, precisamos da informação msg, ou melhor, do dado msg. No caso de App, é o próprio componente que disponibiliza o dado de que seu template precisa através da função data lá dentro da tag <script>. Vejamos:
+
+// alurapic/src/App.vue
+// código anterior omitido
+
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+
+// código posterior omitido
+Em App.vue, disponibilizamos dados para o template através da função data. Essa função sempre retorna um objeto e as propriedades desse objeto são acessíveis no template do componente usando a sintaxe {{ }}.
+
+Interpolação e data binding
+O resultado da sintaxe especial {{ }} com o nome da propriedade que desejamos ler é chamada de interpolação. Dizemos que o dado msg foi interpolado no template. Por fim, essa interpolação segue uma regra: os dados fluem sempre da sua origem para o template e nunca o caminho contrário.
+
+Tecnicamente falando, o que a interpolação faz é uma associação de dados unidirecional chamada data binding. Aliás, uma característica dessa associação é que qualquer mudança no dado gera automaticamente uma atualização no template do componente. Como o componente é exibido dentro de uma view, no caso index.html, podemos dizer que mudanças nos dados acarretam uma atualização da view.
+
+Podemos fazer um teste alterando o valor da propriedade msg por outro qualquer: primeiro módulo caso você queria se familiarizar ainda mais com a sintaxe apresentada com logo do curso.
+
+<!-- alurapic/src/App.vue -->
+<!-- código anterior omitido -->
+
+<script>
+export default {
+  name: 'app',
+  data () {
+    return {
+      msg: 'Seja bem-vindo à sua  Vue.js App'
+    }
+  }
+}
+</script>
+
+<!-- código posterior omitido -->
+Veja que ao alterarmos o valor de msg do objeto retornado pela função data do nosso componente, mudamos o que é apresentado para o usuário. Mas espere um pouco, essa mudança entrou em vigor sem precisarmos recarregar nossa página. Como isso é possível?
+
+Live reloading
+Qualquer alteração que fizemos nossos arquivos do nosso projeto gerará um novo bundle em memória e fará com que o navegador recarregue automaticamente para refletir nossas últimas alterações. Isso só é possível porque o servidor criado pelo Vue CLI suporta LiveReloading.
+
+Agora que já temos uma visão geral de como a aplicação é estruturada, inclusive alguns conceitos importantes do Vue.js, já podemos adequar nossa aplicação para ser tornar realmente a Alurapic!
+
+=== 11 - Exercício
+
+=== 12 - Chegou a hora de você seguir todos os passos realizados por mim durante esta aula. Caso já tenha feito, excelente. Se ainda não, é importante que você implemente o que foi visto no vídeo para poder continuar com o próximo capítulo que tem como pré-requisito todo código aqui escrito.
+
+VER OPINIÃO DO INSTRUTOR
+Opinião do instrutor
+
+O gabarito deste exercício é o passo a passo demonstrado no vídeo. Tenha certeza de que tudo está certo antes de continuar. Ficou com dúvida? Recorra ao nosso fórum, não perca tempo! :)
+
+=== 13 - Revisão
+
+Neste capítulo aprendemos:
+
+instalar e utilizar o Vue CLI
+criar do zero um novo projeto
+estrutura fundamental do projeto
+arquivos de template .vue
+estrutura de um template
+relação entre index.html, main.js e App.vue
+como renderização de um template é feita
+data binding unidirecional através de interpolação
+o mecanismo de live reloading
