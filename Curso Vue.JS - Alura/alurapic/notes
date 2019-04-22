@@ -1,1 +1,45 @@
+Anotações
+
+!!... !! - Dicas de boas práticas.
+
+##... ## - Conceitos.
+
 Vue.js é um framework de JavaScript
+    Core minimalista de 17 kb;
+    Sintese de boas práticas de outros frameworks.
+
+    Iniciando
+        Requisitos
+            - Node.js (Versão superior a 6.X e de preferência uma versão "impár");
+            - VSCode;
+            - Extensão Vue para VSCode de Liuji-Jim.
+        
+        Instalando Vue.js
+            - Por linha de comando (precisa executar como ADM);
+            - Comando: "npm install vue-cli@2.7.0 -g".
+        
+        Criando o projeto
+            - Por linha de comando, acessar a pasta onde o projeto será alocado;
+            - Comando: "vue init webpack-simple <nomeProjeto>";
+            - Após executar o comando o sistema irá confirmar nome do projeto, descrição do projeto e autor antes de criar a pasta;
+            - Após criado a pasta o sistema irá pedir para que 3 comandos sejam executados:
+                - "cd <pastaDoProjeto>", para acessar a pasta do projeto;
+                - "npm install", para baixar as dependências necessárias para o projeto;
+                - "npm run dev", para executar o projeto, abre a página inicial do projeto (gerada automaticamente).
+        Estrutura do projeto
+            - index.html - arquivo .html com a estrutura do projeto;
+                - Porém, todas as informações da página estão no script build.js, mas no momento do ínicio do projeto, esse arquivo é gerado automaticamente na memória RAM do computador, não existindo dentro da estrutura, isso faz com que o processo de desenvolvimento seja mais rápido (dentro de build.js estão todos os dados da pasta src);
+            - package.json - onde ficam as dependências da aplicação;
+                - babel - transforma os arquivos de ECMAScript 2015 para ECMAScript 5, que é mais compatível com navegadores antigos;
+                - webpack - empacota e organiza os arquivos da pasta src;
+            - App.vue - é um módulo (um arquivo onde são declarados os artefatos que podem ser usados por outros módulos), e também uma "Single File Template", neste caso o componente app, é caracterizado por 3 tags:
+                - template - a apresentação do componente;
+                - script - o comportamento do componente;
+                - style - o estilo do componente;
+            Global View Object - é o core, o objeto principal do Vue.js, é responsável por criar a View instance;
+                - View instance - é responsável por criar uma ponte entre o componente (App.vue) e a view (index.html), a configuração da View instance é feita no arquivo main.js;
+                    - main.js - é nesse arquivo é que o componente App (App.vue) é importado e onde a View instance é configurada, nesse projeto, através da função Vue:
+                        new Vue({
+                            el: '#app',
+                            render: h => h(App)
+                        })
