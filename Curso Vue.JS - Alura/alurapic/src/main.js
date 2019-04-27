@@ -7,7 +7,7 @@ import { routes } from './routes';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  routes: routes,
+  routes,
   mode: 'history'
 });
 
@@ -15,6 +15,6 @@ Vue.use(VueResource);
 
 new Vue({
   el: '#app',
-  router: routes,
+  router,
   render: h => h(App)
 })
