@@ -63,6 +63,7 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
+        API_URL: '"http://enderecodasuaapi.com"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

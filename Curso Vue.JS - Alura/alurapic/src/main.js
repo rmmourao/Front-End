@@ -6,8 +6,11 @@ import { routes } from './routes';
 import './directives/Transform';
 import VeeValidate from 'vee-validate';
 import msg from './pt_BR';
+// import './assets/css/teste.css';
 
 Vue.use(VueRouter);
+
+// Vue.http.options.root = process.env.API_URL ? process.env.API_URL : 'http://localhost:3000';
 
 const router = new VueRouter({
   routes,
