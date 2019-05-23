@@ -34,3 +34,5 @@ grid-row-end: <valor>;
 
 grid-gap: .2rem;
     - Adiciona um espaçamento entre linhas e colunas;
+
+https://blog.alura.com.br/criando-componentes-css-com-padrao-bem/
