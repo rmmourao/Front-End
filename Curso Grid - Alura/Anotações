@@ -1,3 +1,4 @@
+Grid Layout
 display: grid;
     - Cria o Grid na página, faz com que o CSS se comporte como um grid;
 
@@ -34,5 +35,17 @@ grid-row-end: <valor>;
 
 grid-gap: .2rem;
     - Adiciona um espaçamento entre linhas e colunas;
+
+Responsividade
+@media screen and (min-width: 0) {
+    .<seletorElemento> {
+        <estilo>: <valor>;
+    }
+}
+    - Cria uma media query, através delas podemos configurar estilos para diferentes tamanhos de tela.
+        - No exemplo acima cria uma media query que irá aplicar elementos para telas maiores que 0 pixels. No lugar de min-width podemos passar max-width, para definirmos estilos para telas menores que o tamanho informado;
+        - .<seletorElemento> indica em qual elemento será aplicada a mudança;
+        - Os elementos que estiverem em uma media query não devem estar duplicados no arquivo CSS com os demais estilos do elemento.
+
 
 https://blog.alura.com.br/criando-componentes-css-com-padrao-bem/
