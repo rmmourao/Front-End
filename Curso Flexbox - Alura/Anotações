@@ -28,3 +28,12 @@ flex-wrap: <valor>;
 
 flex-flow: <orientação> <linhas>;
     - É um atalho que substitui os comandos flex-direction e flex-wrap, ele informa qual orientação o elemento deve seguir e se deve quebrar ao final de cada elemento;
+
+flex-grow: <valor>;
+    - 
+
+flex-shrink: <valor>;
+    - 
+
+order: <valor>;
+    -
